@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Alex's Youtube to MP3</title>
+  </head>
+  <body>
+    <h1>Youtube To MP3/WAV</h1>
+    <script>
+      function submitForm() {
+        var ytl = document.getElementsByName("youtubeLink")[0].value;
+        var audf = document.getElementsByName("audioFormat")[0].value;
+
+        window.open(
+          "http://localhost:8888/youtubeToMp3?youtubeLink=" +
+            ytl +
+            "&soundFormat=" +
+            audf
+        );
+
+        /*
+        
+        const jsonToSend = { youtubeLink: ytl, soundFormat: audf };
+        console.log(jsonToSend);
+
+        xhr = new XMLHttpRequest();
+        var url = "http://localhost:8888/youtubeToMp3";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            console.log(xhr.responseText);
+          }
+        };
+        var data = JSON.stringify(jsonToSend);
+        xhr.send(data);
+        */
+      }
+    </script>
+    <form
+      enctype="application/json"
+      action="http://localhost:8888/youtubeToMp3"
+      method="POST"
+    >
+      Youtube Link:<br />
+      <input
+        type="text"
+        size="50"
+        name="youtubeLink"
+        value="https://www.youtube.com/watch?v=VWGu8v_6TMQ"
+      />
+      <br />
+      Audio Format:<br />
+      <select name="audioFormat">
+        <option value="mp3">MP3</option>
+        <option value="wave">WAV</option>
+      </select>
+      <br /><br />
+    </form>
+    <button onclick="submitForm()">Download file!</button>
+  </body>
+</html>
